@@ -1,51 +1,128 @@
 
 
-setwd("~/Dropbox/UC Davis & Smithsonian/eObs cleaning/KMLs2018")
 
-Bob <- read.csv("~/Dropbox/UC Davis & Smithsonian/eObs cleaning/Clean data 2018/Bob 4661.csv")
-Da_Vinci <- read.csv("~/Dropbox/UC Davis & Smithsonian/eObs cleaning/Clean data 2018/Da Vinci 5764.csv")
-Fonta_Flora <- read.csv("~/Dropbox/UC Davis & Smithsonian/eObs cleaning/Clean data 2018/Fonta Flora 4689.csv")
-Galena <- read.csv("~/Dropbox/UC Davis & Smithsonian/eObs cleaning/Clean data 2018/Galena 5775.csv")
-Golliath <- read.csv("~/Dropbox/UC Davis & Smithsonian/eObs cleaning/Clean data 2018/Golliath 5214.csv")
-Limon <- read.csv("~/Dropbox/UC Davis & Smithsonian/eObs cleaning/Clean data 2018/Limon 5215.csv")
-Avery <- read.csv("~/Dropbox/UC Davis & Smithsonian/eObs cleaning/Clean data 2018/Avery 4671.csv")
-Carlsberg <- read.csv("~/Dropbox/UC Davis & Smithsonian/eObs cleaning/Clean data 2018/Carlsberg 4673.csv")
-Emma <- read.csv("~/Dropbox/UC Davis & Smithsonian/eObs cleaning/Clean data 2018/Emma 5762.csv")
-Inez <- read.csv("~/Dropbox/UC Davis & Smithsonian/eObs cleaning/Clean data 2018/Inez 5213.csv")
-Martinelli <- read.csv("~/Dropbox/UC Davis & Smithsonian/eObs cleaning/Clean data 2018/Martinelli 5763.csv")
-Norah <- read.csv("~/Dropbox/UC Davis & Smithsonian/eObs cleaning/Clean data 2018/Norah 4655.csv")
-Peter_Nelson <- read.csv("~/Dropbox/UC Davis & Smithsonian/eObs cleaning/Clean data 2018/Peter Nelson 5774.csv")
-#Riwaka <- read.csv("~/Dropbox/UC Davis & Smithsonian/eObs cleaning/Clean data 2018/Riwaka 4669.csv")
-Thelonious <- read.csv("~/Dropbox/UC Davis & Smithsonian/eObs cleaning/Clean data 2018/Thelonious 4668.csv")
-Sahti <- read.csv("~/Dropbox/UC Davis & Smithsonian/eObs cleaning/Clean data 2018/Sahti 4693.csv")
-Valoy <- read.csv("~/Dropbox/UC Davis & Smithsonian/eObs cleaning/Clean data 2018/Valoy 5766.csv")
-Zola <- read.csv("~/Dropbox/UC Davis & Smithsonian/eObs cleaning/Clean data 2018/Zola 5212.csv")
+devtools::install_github("wrathematics/getPass")
+
+library(getPass)  
+library(move)
+
+pass <- getPass::getPass() ##keep password confidential
+loginStored <- movebankLogin(username="Shauhin", password=pass)
+
+Bob <- getMovebankData(study=1120749252 , animalName="Bob 4661", login=loginStored)
+Bob <- data.frame(Bob@data)
+Bob$id="Bob 4661"
+
+Da_Vinci <- getMovebankData(study=1120749252 , animalName="Da Vinci 5764", login=loginStored)
+Da_Vinci <- data.frame(Da_Vinci@data)
+Da_Vinci$id="Da Vinci 5764"
+
+Fonta_Flora <- getMovebankData(study=1120749252 , animalName="Fonta Flora 4689", login=loginStored)
+Fonta_Flora <- data.frame(Fonta_Flora@data)
+Fonta_Flora$id="Fonta Flora 4689"
+
+Galena <- getMovebankData(study=1120749252 , animalName="Galena 5775", login=loginStored)
+Galena <- data.frame(Galena@data)
+Galena$id="Galena 5775"
+
+Golliath <- getMovebankData(study=1120749252 , animalName="Golliath 5214", login=loginStored)
+Golliath <- data.frame(Golliath@data)
+Golliath$id="Golliath 5214"
+
+Limon <- getMovebankData(study=1120749252 , animalName="Limon 5215", login=loginStored)
+Limon <- data.frame(Limon@data)
+Limon$id="Limon 5215"
+
+Avery <- getMovebankData(study=1120749252 , animalName="Avery 4671", login=loginStored)
+Avery <- data.frame(Avery@data)
+Avery$id="Avery 4671"
+
+Carlsberg <- getMovebankData(study=1120749252 , animalName="Carlsberg 4673", login=loginStored)
+Carlsberg <- data.frame(Carlsberg)
+Carlsberg <- Carlsberg[,-c(28:30)]
+Carlsberg$id="Carlsberg 4673"
+
+Emma <- getMovebankData(study=1120749252 , animalName="Emma 5762", login=loginStored)
+Emma <- data.frame(Emma)
+Emma <- Emma[,-c(28:30)]
+Emma$id="Emma 5762"
+
+Inez <- getMovebankData(study=1120749252 , animalName="Inez 5213", login=loginStored)
+Inez <- data.frame(Inez)
+Inez <- Inez[,-c(28:30)]
+Inez$id="Inez 5213"
+
+Martinelli <- getMovebankData(study=1120749252 , animalName="Martinelli 5763", login=loginStored)
+Martinelli <- data.frame(Martinelli)
+Martinelli <- Martinelli[,-c(28:30)]
+Martinelli$id="Martinelli 5763"
+
+Norah <- getMovebankData(study=1120749252 , animalName="Norah 4655", login=loginStored)
+Norah <- data.frame(Norah)
+Norah <- Norah[,-c(28:30)]
+Norah$id="Norah 4655"
+
+Peter_Nelson <- getMovebankData(study=1120749252 , animalName="Peter Nelson 5774", login=loginStored)
+Peter_Nelson <- data.frame(Peter_Nelson)
+Peter_Nelson <- Peter_Nelson[,-c(28:30)]
+Peter_Nelson$id="Peter Nelson 5774"
+
+# Riwaka <- getMovebankData(study=1120749252 , animalName="Riwaka 4669", login=loginStored)
+# Riwaka <- data.frame(Riwaka)
+# Riwaka$id="Riwaka 4669"
+
+Thelonious <- getMovebankData(study=1120749252 , animalName="Thelonious 4668", login=loginStored)
+Thelonious <- data.frame(Thelonious)
+Thelonious <- Thelonious[,-c(28:30)]
+Thelonious$id="Thelonious 4668"
+
+Sahti <- getMovebankData(study=1120749252 , animalName="Sahti 4693", login=loginStored)
+Sahti <- data.frame(Sahti)
+Sahti <- Sahti[,-c(28:30)]
+Sahti$id="Sahti 4693"
+
+Valoy <- getMovebankData(study=1120749252 , animalName="Valoy 5766", login=loginStored)
+Valoy <- data.frame(Valoy)
+Valoy <- Valoy[,-c(28:30)]
+Valoy$id="Valoy 5766"
+
+Zola <- getMovebankData(study=1120749252 , animalName="Zola 5212", login=loginStored)
+Zola <- data.frame(Zola)
+Zola <- Zola[,-c(28:30)]
+Zola$id="Zola 5212"
 
 df <- rbind(Bob, Da_Vinci, Galena, Golliath, Fonta_Flora, Limon, Avery, Carlsberg, Emma, Inez, Martinelli, Norah, Peter_Nelson, Thelonious, Sahti, Valoy, Zola)
 
 df <- df[,-c(8:11)]
+df1 <- SpatialPointsDataFrame(coords = df[,c(16,15)], data = df,
+                                  proj4string=CRS("+proj=longlat +datum=WGS84"))
+df1 <- sp::spTransform(df1, CRS("+proj=utm +zone=17 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0"))
+df1=as.data.frame(df1)
 
-df1<-df[!is.na(df$x), ]
+colnames(df1)[25] <-"x"
+colnames(df1)[26] <-"y"
 
-df1$timestamp<-as.POSIXct(df1$timestamp,tz="EST")
+df1<-df1[!is.na(df1$x), ]
 
-dyadDurat<-read.csv("~/Dropbox/UC Davis & Smithsonian/eObs cleaning/Dyadic_dist/unique_2018_50m_dip20_patches.csv")
+df1$timestamp<-as.POSIXct(df1$timestamp,tz="UTC")
+df1$timestamp<-lubridate::with_tz(df1$timestamp, tzone = "America/Panama")
+
+dyadDurat<-read.csv("C:/Users/salavi/Documents/dyadDurat_18.csv")
 dyadDurat<-dyadDurat[,-1]
-dyadDurat$timestamp<-as.POSIXct(dyadDurat$timestamp,tz="EST") ### recognize time as class time
+dyadDurat$timestamp<-as.POSIXct(dyadDurat$timestamp,tz="America/Panama") ### recognize time as class time
 
 dyadDurat1 <- dyadDurat
 #dyadDurat1 <- dyadDurat[-which(dyadDurat$id1=="Sahti 4693" | dyadDurat$id2=="Sahti 4693" | dyadDurat$id1=="Emma 5762" | dyadDurat$id2=="Emma 5762"), ]
 
 library(spacetime)
 
-##### Not sure if necessary here, already done in the MonkeyCoati_interac_diff_dist.R script #######
 species.func<-function(IDvec){
   outputVec<-c()
   for(i in 1:length(IDvec)){
     if(IDvec[i]=="Bob 4661" ||IDvec[i]=="Da Vinci 5764" || IDvec[i]=="Martinelli 5763" || IDvec[i]=="Norah 4655" || IDvec[i]=="Valoy 5766"){
       outputVec[i]<-'Capuchin'
     }else{
-      if(IDvec[i]=="Fonta Flora 4689" || IDvec[i]=="Galena 5775" || IDvec[i]=="Avery 4671" || IDvec[i]=="Carlsberg 4673" || IDvec[i]=="Peter Nelson 5774" || IDvec[i]=="Thelonious 4668" || IDvec[i]=="Golliath 5214"){
+      if(IDvec[i]=="Fonta Flora 4689" || IDvec[i]=="Galena 5775" || IDvec[i]=="Avery 4671" || IDvec[i]=="Carlsberg 4673" || IDvec[i]=="Peter Nelson 5774" || IDvec[i]=="Thelonious 4668" || IDvec[i]=="Golliath 5214" || IDvec[i]=="Riwaka 4669"){
         outputVec[i]<-'Coati'
       }else{
         if(IDvec[i]=="Limon 5215" || IDvec[i]=="Inez 5213" || IDvec[i]=="Zola 5212"){
@@ -63,10 +140,10 @@ dyadDurat1
 tail(dyadDurat1)
 
 ### Capuchin and spider monkey interactions
-#df.one<-dyadDurat1[dyadDurat1$species1=='Capuchin' & dyadDurat1$species2=='Capuchin',]
+df.one<-dyadDurat1[dyadDurat1$species1=='Capuchin' & dyadDurat1$species2=='Capuchin',]
 df.two<-dyadDurat1[dyadDurat1$species1=='Capuchin' & dyadDurat1$species2=='Spider Monkey',]
 df.three<-dyadDurat1[dyadDurat1$species1=='Spider Monkey' & dyadDurat1$species2=='Capuchin',]
-#df.four<-dyadDurat1[dyadDurat1$species1=='Spider Monkey' & dyadDurat1$species2=='Spider Monkey',]
+df.four<-dyadDurat1[dyadDurat1$species1=='Spider Monkey' & dyadDurat1$species2=='Spider Monkey',]
 
 monkey.df<-rbind(df.one,df.two,df.three,df.four)
 monkey.df
@@ -114,7 +191,7 @@ for(i in sample(nrow(mon.coati.df))){ ### for each interaction
   counter
   
   plotKML(temp_ST, points_names=c("id1"),colour_scale=c("yellow", "magenta"),
-          file.name=paste(counter,mon.coati.df$timestamp[i],"1.kml",sep="_"),fixed = TRUE)
+          file.name = paste( counter, gsub( ':', '', gsub( '-', '', gsub( ' ', '_', mon.coati.df$timestamp[i] ) ) ),"1.kml",sep="_"),fixed = TRUE)
   
   new_rows2<-which(df1$id==as.character(mon.coati.df$id2[i]) & df1$timestamp >= start.time & df1$timestamp <= end.time)  
   temp<-df1[new_rows2,]
@@ -128,7 +205,7 @@ for(i in sample(nrow(mon.coati.df))){ ### for each interaction
   counter
   
   plotKML(temp_ST, points_names=c("id2"),colour_scale=c("red", "blue"),
-          file.name=paste(counter,mon.coati.df$timestamp[i],"2.kml",sep="_"),fixed = TRUE)
+          file.name = paste( counter, gsub( ':', '', gsub( '-', '', gsub( ' ', '_', mon.coati.df$timestamp[i] ) ) ),"2.kml",sep="_"),fixed = TRUE)
   
   
   vec<-c(counter,i,as.character(unique(tempraw$id)))
@@ -159,9 +236,12 @@ for(i in sample(nrow(coati.df))){ ### for each interaction
   temp<-temp[which(duplicated(temp$timestamp)|duplicated(temp$timestamp,fromLast = T)),] ## Only includes timestamps for which each individual has a data point (important for plotKML function, I think)
   temp<-temp[order(temp$timestamp),]
   times<-temp$timestamp
-  coordinates(temp)<-c("x","y")
-  proj4string(temp)<-CRS("+proj=utm +zone=17 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0")
-  temp_sp<-as(temp,"SpatialPoints")
+  temp_sp <- SpatialPointsDataFrame(coords = temp[c("x","y")], data = temp,
+                                proj4string=CRS("+proj=utm +zone=17 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0"))
+
+  #coordinates(temp)<-c("x","y")
+  #proj4string(temp)<-CRS("+proj=utm +zone=17 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0")
+  #temp_sp<-as(temp,"SpatialPoints")
   temp_ST<- STIDF(temp_sp,times,data=data.frame(time=temp$timestamp))
   counter
   
