@@ -35,6 +35,7 @@ install.packages(packages_to_install, dependencies = TRUE, type="source")
 ## Script metadata
 
 ```Dyadic_dist16.R```: Isolates segments of the 2015-16 data where there are encounters (animals within 20m of each other). Generates data to be used in ```KLM.R```
+
 ```Dyadic_dist18.R```: Isolates segments of the 2017-18 data where there are encounters (animals within 20m of each other). Generates data to be used in ```KLM.R```
 
 ```KMLs.R```: Animates the 2017-18 data as KML files to be reviewed in google earth pro and examine encounter outcomes.
