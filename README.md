@@ -38,6 +38,7 @@ install.packages(packages_to_install, dependencies = TRUE, type="source")
 ```Dyadic_dist18.R```: Isolates segments of the 2017-18 data where there are encounters (animals within 20m of each other). Generates data to be used in ```KLM.R```
 
 ```KMLs.R```: Animates the 2017-18 data as KML files to be reviewed in google earth pro and examine encounter outcomes.
+
 ```KMLs16.R```: Animates the 2015-16 data as KML files to be reviewed in google earth pro and examine encounter outcomes.
 
 ```Randomizations.R```: Permutes GPS tracks at daily timescale, to test encounter rates and durations against random. 
