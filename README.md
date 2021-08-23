@@ -14,7 +14,7 @@ devtools::install_github("wrathematics/getPass")
 
 #Check if required packages and their dependencies need installation or updates
 list_of_required_packages <- c("mgcv", "plyr", "dplyr", "readr", "stringr", 
-"lme4", "Matrix", "magrittr", "ggplot2", "ggpubr", "fitdistrplus", "tidyr", 
+"lme4", "Matrix", "maditr", "magrittr", "ggplot2", "ggpubr", "fitdistrplus", "tidyr", 
 "mgcv", "gganimate", "scales", "tweenr", "lubridate", "spacetime", "sp", 
 "plotKML", "rgdal", "raster", "RStoolbox", "ggspatial", "gapminder", "gifski", 
 "StanHeaders", "rstan")
