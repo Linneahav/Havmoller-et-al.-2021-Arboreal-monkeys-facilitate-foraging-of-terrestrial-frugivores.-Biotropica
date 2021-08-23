@@ -32,6 +32,11 @@ install.packages(packages_to_install, dependencies = TRUE, type="source")
 ```
 
 
+Be sure to change the working directory to an appropriate one on your system. Also be sure to modify where write.csv() saves all outputs. 
+
+For ```Dyadic_dist16.R```, ```Dyadic_dist18.R```, ```KMLs.R```, and ```KMLs16.R```, please replace the movebank login information with your user information. If you are unable to download the data from movebank, you may need to log in from your browser and request access to the project. 
+
+
 ## Script metadata
 
 ```Dyadic_dist16.R```: Isolates segments of the 2015-16 data where there are encounters (animals within 20m of each other). Generates data to be used in ```KLM.R```
