@@ -49,7 +49,7 @@ For ```Dyadic_dist16.R```, ```Dyadic_dist18.R```, ```KMLs.R```, and ```KMLs16.R`
 
 ```Randomizations.R```: Permutes GPS tracks at daily timescale, to test encounter rates and durations against random. 
 
-```2020_04_20_functions.R```: Contains functions that are called in ```Randomizations.R```, which are necessary for cleaning the data for permutation, permuting the tracks, and plotting the results)
+```2020_04_20_functions.R```: Contains functions that are called in ```Randomizations.R```, which are necessary for cleaning the data for permutation, permuting the tracks, and plotting the results.
 
 ```Playback_Analysis.R```: To statistically test experimental treatments against controls for the playback experiments. 
 
