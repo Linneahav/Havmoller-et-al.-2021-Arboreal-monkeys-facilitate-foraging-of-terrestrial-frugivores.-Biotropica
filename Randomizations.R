@@ -5,12 +5,76 @@
 
 setwd( "/Users/carterloftus/Documents/Spacing/dyadic_interactions/" )
 
+
 ## dataframe preparation
-df <- read.csv( "Food for Thought - Comparative Frugivore Tracking Cleaned data v2.csv" )
+library(getPass)  
+library(move)
+
+pass <- getPass::getPass() ##keep password confidential
+loginStored <- movebankLogin(username="Shauhin", password=pass)
+
+data <- getMovebankData(study=1120749252 ,  login=loginStored)
+
+df <- data@data
+df$individual.local.identifier=as.character(data@trackId)
+df$individual.taxon.canonical.name=NA
+for(i in 1:nrow(data@idData)){
+  df$individual.taxon.canonical.name[which(df$individual.local.identifier==as.character(rownames(data@idData)[i]))]=as.character(data@idData$taxon_canonical_name[i])
+  df$individual.local.identifier[which(df$individual.local.identifier==as.character(rownames(data@idData)[i]))]=as.character(data@idData$local_identifier[i])
+  
+}
+df$individual.taxon.canonical.name=trimws(df$individual.taxon.canonical.name)
+df$individual.local.identifier=trimws(df$individual.local.identifier)
+colnames(df)[c(19,20)]=c("location.lat","location.long")
+
+df_split=split(df,as.factor(df$individual.taxon.canonical.name))
+Potos = df_split$`Potos flavus`
+Other = rbind(df_split$`Ateles geoffroyi`,df_split$`Cebus capucinus`,df_split$`Nasua narica`)
+Potos_time_Y1=seq(from=as.POSIXct("2015-12-14 18:00:00", tz = 'America/Panama'), to=as.POSIXct("2016-04-18 19:00:00", tz = 'America/Panama'), by="1 sec")
+Potos_time_Y1=lubridate::with_tz(Potos_time_Y1, tzone = "UTC")
+Potos_time_Y2=seq(from=as.POSIXct("2017-12-14 18:00:00", tz = 'America/Panama'), to=as.POSIXct("2018-03-04 19:00:00", tz = 'America/Panama'), by="1 sec")
+Potos_time_Y2=lubridate::with_tz(Potos_time_Y2, tzone = "UTC")
+Potos_time_Y1=Potos_time_Y1[Potos_time_Y1 %in% Potos$timestamp]
+Potos_time_Y2=Potos_time_Y2[Potos_time_Y2 %in% Potos$timestamp]
+
+
+Other_time_Y1=seq(from=as.POSIXct("2015-12-11 5:00:00", tz = 'America/Panama'), to=as.POSIXct("2016-04-21 19:00:00", tz = 'America/Panama'), by="1 sec")
+Other_time_Y1=lubridate::with_tz(Other_time_Y1, tzone = "UTC")
+Other_time_Y2=seq(from=as.POSIXct("2017-12-01 5:00:00", tz = 'America/Panama'), to=as.POSIXct("2018-06-14 19:00:00", tz = 'America/Panama'), by="1 sec")
+Other_time_Y2=lubridate::with_tz(Other_time_Y2, tzone = "UTC")
+Other_time_Y1=Other_time_Y1[Other_time_Y1 %in% Other$timestamp]
+Other_time_Y2=Other_time_Y2[Other_time_Y2 %in% Other$timestamp]
+Potos_time2_y1=data.frame(cbind(as.character(Potos_time_Y1),as.numeric(as.factor(as.character(cut(Potos_time_Y1,  breaks="24 hours"))))))
+Other_time2_y1=data.frame(cbind(as.character(Other_time_Y1),as.numeric(as.factor(as.character(cut(Other_time_Y1,  breaks="24 hours"))))))
+Potos_time2_y2=data.frame(cbind(as.character(Potos_time_Y2),as.numeric(as.factor(as.character(cut(Potos_time_Y2,  breaks="24 hours"))))))
+Other_time2_y2=data.frame(cbind(as.character(Other_time_Y2),as.numeric(as.factor(as.character(cut(Other_time_Y2,  breaks="24 hours"))))))
+colnames(Potos_time2_y1)=c("timestamp","day")
+colnames(Potos_time2_y2)=c("timestamp","day")
+colnames(Other_time2_y1)=c("timestamp","day")
+colnames(Other_time2_y2)=c("timestamp","day")
+Potos_time2=rbind(Potos_time2_y1,Potos_time2_y2)
+Other_time2=rbind(Other_time2_y1,Other_time2_y2)
+
+Potos_time2$timestamp<- as.POSIXct(Potos_time2$timestamp, tz = 'UTC')
+Other_time2$timestamp<- as.POSIXct(Other_time2$timestamp, tz = 'UTC')
+Potos$day=NA
+Other$day=NA
+
+for(i in 1:nrow(Potos_time2)){
+  Potos$day[which(Potos$timestamp==Potos_time2$timestamp[i])]=Potos_time2$day[i]
+}
+for(i in 1:nrow(Other_time2)){
+  Other$day[which(Other$timestamp==Other_time2$timestamp[i])]=Other_time2$day[i]
+}
+
+df=rbind(Potos,Other)
+
+detach("package:move", unload = TRUE)
 
 df <- trim_data( df )
 
 time_periods <- read.csv( "time_periods.csv" )
+colnames(time_periods)<-c("start", "end", "samp_int")
 
 df <- std_time( df, time_period_df = time_periods )
 
@@ -19,8 +83,13 @@ df <- lonlat_to_utm( df )
 df <- rem_dups( df )
 
 Linnea_id_data <- read.csv( 'Linnea_id_data.csv' )
+colnames(Linnea_id_data)<-c("id", "func_ind", "cat")
+Linnea_id_data$id=trimws(Linnea_id_data$id)
+Linnea_id_data$func_ind=trimws(Linnea_id_data$func_ind)
+Linnea_id_data$cat=trimws(Linnea_id_data$cat)
 
 Linnea_comp_matrix <- read.csv( 'Linnea_comp_matrix.csv' )
+colnames(Linnea_comp_matrix)<-c("Spider_monkey", "Capuchin", "Coati")
 
 Linnea_comp_matrix <- as.matrix( Linnea_comp_matrix )
 
@@ -55,12 +124,12 @@ for( i in 1: length( res[[1]]) ){
 
 ## read csv's back in
 
-final_rand <- read.csv( "Linneas results/Linnea final_rand.csv" )
-final_real <- read.csv( "Linneas results/Linnea final_real.csv" )
-out_poly_rand <- read.csv( "Linneas results/Linnea out_poly_rand.csv" )
-out_poly_real <- read.csv( "Linneas results/Linnea out_poly_real.csv" )
-poly_rand <- read.csv( "Linneas results/Linnea poly_rand.csv" )
-poly_real <- read.csv( "Linneas results/Linnea poly_real.csv" )
+final_rand <- read.csv( "C:/Users/salavi/Downloads/Linnea final_rand.csv" )
+final_real <- read.csv( "C:/Users/salavi/Downloads/Linnea final_real.csv" )
+out_poly_rand <- read.csv( "C:/Users/salavi/Downloads/Linnea out_poly_rand.csv" )
+out_poly_real <- read.csv( "C:/Users/salavi/Downloads/Linnea out_poly_real.csv" )
+poly_rand <- read.csv( "C:/Users/salavi/Downloads/Linnea poly_rand.csv" )
+poly_real <- read.csv( "C:/Users/salavi/Downloads/Linnea poly_real.csv" )
 
 res <- list( list( final = list( real = final_real, rand = final_rand ), poly = list( real = poly_real, rand = poly_rand ), out_poly = list( real = out_poly_real, rand = out_poly_rand ) ) , 'placeholder' )
 
