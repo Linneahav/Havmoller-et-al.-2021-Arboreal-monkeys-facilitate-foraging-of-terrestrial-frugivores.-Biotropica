@@ -1,4 +1,6 @@
 # Havmoller-et-al.-2021-Arboreal-monkeys-facilitate-foraging-of-terrestrial-frugivores.-Biotropica
+![image](https://user-images.githubusercontent.com/28358826/130823405-e2bda053-4831-4ec6-9e7c-0f2edbe9df4a.png)
+
 This repository contains statistical code related to Havmoller et al. (2021) Arboreal monkeys facilitate foraging of terrestrial frugivores. Biotropica
 
 [Data](https://osf.io/2adg5/) used in all analyses for this project are hosted on [Open Science Framework](https://osf.io/2adg5/). Original movement data are hosted on [Movebank](https://www.movebank.org/) (Processed data: Movebank ID 1120749252; Unprocessed data: Movebank ID 468460067)
