@@ -49,11 +49,15 @@ For ```Dyadic_dist16.R```, ```Dyadic_dist18.R```, ```KMLs.R```, and ```KMLs16.R`
 
 ```Randomizations.R```: Permutes GPS tracks at daily timescale, to test encounter rates and durations against random. 
 
+```2020_04_20_functions.R```: Contains functions that are called in ```Randomizations.R```, which are necessary for cleaning the data for permutation, permuting the tracks, and plotting the results)
+
 ```Playback_Analysis.R```: To statistically test experimental treatments against controls for the playback experiments. 
 
 ```Playback_posthoc_analysis_SupplementaryFigure.R```: Same as ```PB.R``` except treatments and controls have been combined per the suggestion of the subject editor to confirm that statistical trends are real and lack of significance a function of sample size
 
 ```CoatiDipVisitDuration_monkey_presenceVSabsence.R```: Script to make statistical comparisons of coati Dipteryx visit durations with and without the presence of collared monkeys.
+
+```cam_gps_merge.R```: Integrates data from camera traps and from GPS collars to determine both the time lag between fruit tree visits (using the camera trap data) and whether a collared monkey was in the tree during the visit. This script produces ```waiting_times.csv``` which is then supplied to ```mixture_model_for_Biotropica.R```
 
 ```mixture_model_for_Biotropica.stan```: Stan script specifying the stan model to be used in ```mixture_model_for_Biotropica.R```
 
