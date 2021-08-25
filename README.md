@@ -57,6 +57,8 @@ For ```Dyadic_dist16.R```, ```Dyadic_dist18.R```, ```KMLs.R```, and ```KMLs16.R`
 
 ```CoatiDipVisitDuration_monkey_presenceVSabsence.R```: Script to make statistical comparisons of coati Dipteryx visit durations with and without the presence of collared monkeys.
 
+```ftt recurse dip.R```: Calculates tree entry and exit times for collared monkeys, data are used in ```cam_gps_merge.R```
+
 ```cam_gps_merge.R```: Integrates data from camera traps and from GPS collars to determine both the time lag between fruit tree visits (using the camera trap data) and whether a collared monkey was in the tree during the visit. This script produces ```waiting_times.csv``` which is then supplied to ```mixture_model_for_Biotropica.R```
 
 ```mixture_model_for_Biotropica.stan```: Stan script specifying the stan model to be used in ```mixture_model_for_Biotropica.R```
