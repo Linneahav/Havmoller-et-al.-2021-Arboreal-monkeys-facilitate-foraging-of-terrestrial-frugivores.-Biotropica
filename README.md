@@ -53,7 +53,7 @@ For ```Dyadic_dist16.R```, ```Dyadic_dist18.R```, ```KMLs.R```, and ```KMLs16.R`
 
 ```Playback_Analysis.R```: To statistically test experimental treatments against controls for the playback experiments. 
 
-```Playback_posthoc_analysis_SupplementaryFigure.R```: Same as ```PB.R``` except treatments and controls have been combined per the suggestion of the subject editor to confirm that statistical trends are real and lack of significance a function of sample size
+```Playback_posthoc_analysis_SupplementaryFigure.R```: Same as ```Playback_Analysis.R``` except treatments and controls have been combined per the suggestion of the subject editor to confirm that statistical trends are real and lack of significance a function of sample size
 
 ```CoatiDipVisitDuration_monkey_presenceVSabsence.R```: Script to make statistical comparisons of coati Dipteryx visit durations with and without the presence of collared monkeys.
 
