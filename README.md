@@ -16,7 +16,7 @@ devtools::install_github("wrathematics/getPass")
 list_of_required_packages <- c("mgcv", "plyr", "dplyr", "readr", "stringr", 
 "lme4", "Matrix", "maditr", "reshape2", "magrittr", "ggplot2", "ggpubr", "fitdistrplus", "tidyr", 
 "mgcv", "gganimate", "scales", "tweenr", "lubridate", "spacetime", "sp", 
-"plotKML", "rgdal", "raster", "rgeos", "RStoolbox", "ggspatial", "gapminder", "gifski", 
+"plotKML", "rgdal", "raster", "rgeos", "move", "recurse","RStoolbox", "ggspatial", "gapminder", "gifski", 
 "StanHeaders", "rstan")
 
 check_if_needs_install=as.character(miniCRAN::pkgDep(list_of_required_packages, suggests = TRUE, enhances = TRUE))
