@@ -30,7 +30,7 @@ packages_to_update=check_if_needs_install[check_if_needs_install %in% check_if_n
 packages_to_install=c(new_packages,packages_to_update)
 
 
-install.packages(packages_to_install, dependencies = TRUE, type="source")
+install.packages(packages_to_install, type="source")
 ```
 
 
